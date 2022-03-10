@@ -1,0 +1,110 @@
+.admin-sidebar {
+  $primary-color: #ef5350;
+  $secondary-color: #fff;
+  $tertiary-color: #e53935;
+
+  width: 260px;
+  height: 100vh;
+  background-color: $primary-color;
+  box-shadow: 0 10px 30px -12px rgb(0 0 0 / 42%),
+    0 4px 25px 0px rgb(0 0 0 / 12%), 0 8px 10px -5px rgb(0 0 0 / 20%);
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: fixed;
+  
+  .title-container {
+    margin: 0px;
+    padding: 15px 0px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+
+    a.title {
+      background: transparent;
+      text-decoration: none;
+      color: $secondary-color;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      padding: 5px 0px;
+
+      img.title-img {
+        width: 35px;
+      }
+
+      h1 {
+        margin: 0px 10px;
+        font-size: clamp(0.8rem, 1vw + 1rem, 1.2rem);
+        font-weight: bold;
+      }
+    }
+  }
+
+  .sidebar-line {
+    width: calc(100% - 30px);
+    height: 1px;
+    background-color: $secondary-color;
+  }
+
+  .items-container {
+    width: 100%;
+    height: auto;
+    background: transparent;
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  button.item {
+    width: 230px;
+    height: 50px;
+    background: $primary-color;
+    margin: 10px 15px 0px;
+    padding: 0 10px;
+    border: none;
+    border-radius: 3px;
+    color: $secondary-color;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      background: $tertiary-color;
+      transition: all 0.3s ease-in-out;
+      box-shadow: 0 0px 10px rgb(0 0 0 / 20%);
+    }
+
+    p {
+      margin: 0px 10px;
+    }
+  }
+
+  button.item-active {
+    width: 230px;
+    height: 50px;
+    background: $secondary-color;
+    margin: 10px 15px 0px;
+    padding: 0 10px;
+    border: none;
+    border-radius: 3px;
+    color: $primary-color;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    box-shadow: 0 0px 10px rgb(0 0 0 / 20%);
+    transition: all 0.3s ease-in-out;
+
+    p {
+      margin: 0px 10px;
+      font-weight: bold;
+    }
+  }
+}
