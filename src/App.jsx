@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Routes,
   Route,
@@ -13,7 +13,6 @@ import Dashboard from "./pages/dashboard";
 
 import "./App.scss";
 
-
 const RequiredAuth = () => {
   const isAuth = true;
 
@@ -26,18 +25,28 @@ const RequiredAuth = () => {
 };
 
 function App() {
+  const [isExpand, setIsExpand] = useState(true);
+  const [showRightSidebar, setShowRightSidebar] = useState(false);
+  
+  const appState = {
+    isExpand,
+    setIsExpand,
+    showRightSidebar,
+    setShowRightSidebar
+  }
+
   return (
     <>
       <BrowserRouter>
         <Routes>
           {/* public route */}
           <Route path="/" element={<Catalog />} />
-          
+
           {/* protected route */}
-          <Route element={<RequiredAuth />} >
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/account" element={<Account />} />
-            <Route path="/about-adm" element={<AboutAdmin />} />
+          <Route element={<RequiredAuth />}>
+            <Route path="/dashboard" element={<Dashboard appState={appState} />} />
+            <Route path="/account" element={<Account appState={appState} />} />
+            <Route path="/about-adm" element={<AboutAdmin appState={appState} />} />
           </Route>
         </Routes>
       </BrowserRouter>
