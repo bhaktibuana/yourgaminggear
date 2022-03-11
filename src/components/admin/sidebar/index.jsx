@@ -13,7 +13,7 @@ const Sidebar = (props) => {
 
   return (
     <>
-      <div className="admin-sidebar">
+      <div className={props.appState.isExpand ? "admin-sidebar-expand" : "admin-sidebar"}>
         <div className="title-container">
           <a href="/" className="title">
             <img
