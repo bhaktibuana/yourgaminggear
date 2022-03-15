@@ -13,6 +13,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 20;
+
 
   .navbar-container {
     width: 100%;
@@ -218,11 +220,13 @@
   background-color: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(2px);
   box-shadow: 0px 0px 15px rgb(255 255 255 / 80%);
+  border-bottom: 1px solid $primary-color;
   color: $secondary-color;
   position: fixed;
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 20;
 
   .navbar-container {
     width: 100%;
