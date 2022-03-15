@@ -2,7 +2,7 @@
   $primary-color: #eee;
 
   width: calc(100% - 80px);
-  height: 2000px;
+  height: auto;
   left: 80px;
   position: absolute;
   background-color: $primary-color;
@@ -18,7 +18,7 @@
   $primary-color: #eee;
 
   width: calc(100% - 260px);
-  height: 2000px;
+  height: auto;
   left: 260px;
   position: absolute;
   background-color: $primary-color;
@@ -32,10 +32,68 @@
 
 .dashboard-container {
   $primary-color: #eee;
-  
+  $secondary-color: #fff;
+  $tertiary-color: #555;
+  $green-color: #66bb6a;
+  $yellow-color: #ffa726;
+  $red-color: #ef5350;
+  $greenGrad-color: linear-gradient(60deg, #66bb6a, #43a047);
+  $yellowGrad-color: linear-gradient(60deg, #ffa726, #fb8c00);
+  $redGrad-color: linear-gradient(60deg, #ef5350, #e53935);
+
   width: initial;
   height: 100%;
   margin: 80px 0 0 0;
   padding: 10px 20px;
-  display: flex;
+  display: block;
+
+  .product-table-card {
+    width: 100%;
+    height: auto;
+    background-color: $secondary-color;
+    box-shadow: 0 0 10px rgb(0 0 0 / 10%);
+    border-radius: 4px;
+    margin: 10px 0;
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+
+    .table-card-header {
+      width: 100%;
+      height: 60px;
+      background-color: $secondary-color;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 15px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+
+      p {
+        margin: 0;
+        font-size: 1.5rem;
+        color: $tertiary-color;
+      }
+
+      .right-button {
+        width: auto;
+        height: auto;
+        display: flex;
+        justify-content: space-between;
+
+        button {
+          margin: 0 0 0 20px;
+        }
+      }
+    }
+
+    .table-card-body {
+      width: 100%;
+      height: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: $secondary-color;
+      padding: 10px;
+    }
+  }
 }
