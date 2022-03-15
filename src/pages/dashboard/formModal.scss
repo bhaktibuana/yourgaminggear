@@ -1,0 +1,41 @@
+form.form-modal {
+  $red-color: #ef5350;
+
+  width: 100%;
+  height: auto;
+
+  .item {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+
+    label {
+      width: 30%;
+    }
+
+    .input-container {
+      width: 100%;
+      height: auto;
+      display: flex;
+      flex-direction: column;
+
+      input.input-file {
+        width: 100%;
+      }
+
+      .error-msg {
+        display: flex;
+    
+        p {
+          color: $red-color;
+          margin: 0;
+        }
+      }
+    }
+  }
+  
+  p {
+    color: $red-color;
+    margin: 0;
+  }
+}

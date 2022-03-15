@@ -10,6 +10,7 @@ import AboutAdmin from "./pages/aboutAdmin";
 import Account from "./pages/account";
 import Catalog from "./pages/catalog";
 import Dashboard from "./pages/dashboard";
+import { apiUrl } from "./api/apiUrl";
 
 import "./App.scss";
 
@@ -44,7 +45,7 @@ function App() {
 
           {/* protected route */}
           <Route element={<RequiredAuth />}>
-            <Route path="/dashboard" element={<Dashboard appState={appState} />} />
+            <Route path="/dashboard" element={<Dashboard appState={appState} apiUrl={apiUrl} />} />
             <Route path="/account" element={<Account appState={appState} />} />
             <Route path="/about-adm" element={<AboutAdmin appState={appState} />} />
           </Route>
