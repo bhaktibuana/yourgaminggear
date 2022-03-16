@@ -2,7 +2,8 @@
   $primary-color: #eee;
 
   width: calc(100% - 80px);
-  height: 2000px;
+  height: auto;
+  min-height: 100vh;
   left: 80px;
   position: absolute;
   background-color: $primary-color;
@@ -18,7 +19,8 @@
   $primary-color: #eee;
 
   width: calc(100% - 260px);
-  height: 2000px;
+  height: auto;
+  min-height: 100vh;
   left: 260px;
   position: absolute;
   background-color: $primary-color;
@@ -30,12 +32,230 @@
   }
 }
 
-.account-container {
+.account-root {
   $primary-color: #eee;
-  
-  width: initial;
+  $secondary-color: #fff;
+  $tertiary-color: #555;
+
+  width: 100%;
   height: 100%;
-  margin: 80px 0 0 0;
-  padding: 10px 20px;
+  min-height: 100vh;
   display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  .account-container {
+    width: initial;
+    height: 100%;
+    margin: 80px 0 0 0;
+    padding: 10px 20px;
+    display: flex;
+    
+    @media screen and (max-width: 960px) {
+      flex-direction: column;
+    }
+
+    .profile-card {
+      width: 450px;
+      height: auto;
+      min-height: 550px;
+      background-color: $secondary-color;
+      box-shadow: 0 0 10px rgb(0 0 0 / 10%);
+      border-radius: 4px;
+      margin: 10px 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      @media screen and (max-width: 960px) {
+        width: auto;
+      }
+
+      .profile-card-banner {
+        width: 100%;
+        height: 200px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          border-radius: 4px 4px 0 0;
+        }
+      }
+
+      .profile-image {
+        width: 160px;
+        height: 160px;
+        background-color: $secondary-color;
+        position: relative;
+        top: -80px;
+        border-radius: 50%;
+        border: 5px solid $secondary-color;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        img {
+          width: 100%;
+          height: 100%;
+          border-radius: 50%;
+          object-fit: cover;
+          cursor: pointer;
+          transition: all 0.2s ease-in-out;
+        }
+
+        p {
+          position: absolute;
+          margin: 0;
+          color: $secondary-color;
+          display: none;
+          transition: all 0.2s ease-in-out;
+          cursor: pointer;
+        }
+
+        &:hover {
+          img {
+            filter: brightness(70%);
+            transition: all 0.2s ease-in-out;
+          }
+
+          p {
+            display: initial;
+            transition: all 0.2s ease-in-out;
+          }
+        }
+      }
+
+      .profile-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: auto;
+        top: -25px;
+        position: relative;
+        padding-inline: 10px;
+
+        h1 {
+          font-size: 1.8rem;
+          font-weight: bold;
+          text-align: center;
+          margin: 0 0 10px 0;
+        }
+
+        p {
+          font-size: 1rem;
+          text-align: center;
+          margin: 0 0 10px 0;
+        }
+      }
+    }
+
+    .account-detail-card {
+      width: 100%;
+      height: auto;
+      min-height: 550px;
+      background-color: $secondary-color;
+      box-shadow: 0 0 10px rgb(0 0 0 / 10%);
+      border-radius: 4px;
+      margin: 10px 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-left: 20px;
+      padding: 15px;
+
+      @media screen and (max-width: 960px) {
+        margin-left: 0;
+      }
+
+      .account-detail-card-header {
+        width: 100%;
+        height: 80px;
+        background-color: $secondary-color;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 15px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+
+        p {
+          margin: 0;
+          font-size: 1.5rem;
+          color: $tertiary-color;
+        }
+      }
+
+      .account-detail-card-body {
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        background-color: $secondary-color;
+        padding: 30px 10px;
+
+        .item {
+          width: auto;
+          min-height: 35px;
+          height: auto;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin: 2px 0;
+
+          p.label {
+            width: 125px;
+            height: 100%;
+            font-size: 1.1rem;
+            text-align: right;
+            margin: 0 15px;
+
+            @media screen and (max-width: 1350px) {
+              margin: 0 5px;
+            }
+
+            @media screen and (max-width: 760px) {
+              display: none;
+            }
+          }
+
+          .text-input {
+            width: 400px;
+            height: 100%;
+
+            p {
+              font-size: 1.1rem;
+              margin: 0;
+              
+              @media screen and (max-width: 760px) {
+                font-size: 0.9rem;
+              }
+            }
+
+            @media screen and (max-width: 1350px) {
+              width: 300px;
+            }
+
+            @media screen and (max-width: 760px) {
+              width: 200px;
+            }
+          }
+
+          .button-container {
+            height: 100%;
+            width: 110px;
+            display: flex;
+            justify-content: space-between;
+            margin-left: 10px;
+          }
+        }
+      }
+    }
+  }
 }
