@@ -2,7 +2,9 @@ import React, { useState, useEffect } from "react";
 import Navbar from "../../components/admin/navbar";
 import RightSidebar from "../../components/admin/rightSidebar";
 import Sidebar from "../../components/admin/sidebar";
+import Footer from "../../components/admin/footer";
 import { Table, Button, Form, Select, Popconfirm } from "antd";
+import { MdEditNote, MdDeleteForever } from "react-icons/md";
 import axios from "axios";
 
 import "./style.scss";
@@ -35,7 +37,7 @@ const Dashboard = (props) => {
       dataIndex: "key",
       key: "key",
       align: "center",
-      width: "5%",
+      width: "3%",
       sorter: (a, b) => a.key - b.key,
     },
     {
@@ -69,8 +71,8 @@ const Dashboard = (props) => {
       dataIndex: "image_url",
       key: "image_url",
       render: (text) => (
-        <a href={text} target="_blank" rel="noopener noreferrer">
-          {text}
+        <a title={text} href={text} target="_blank" rel="noopener noreferrer">
+          {urlPreviewFormatting(text)}
         </a>
       ),
     },
@@ -78,33 +80,55 @@ const Dashboard = (props) => {
       title: "Action",
       key: "action",
       align: "center",
-      width: "15%",
+      width: "12%",
       render: (text, record) => (
         <>
           <Button
             type="primary"
-            style={{ margin: "0 5px 0 0" }}
+            style={{ margin: "1px 1px" }}
             onClick={() => {
               setModalItem(record);
               setModalTitle("Edit Product");
               setModalVisible(true);
             }}
           >
-            Edit
+            <MdEditNote size={20} />
           </Button>
 
           <Popconfirm
             title="Sure to delete?"
             onConfirm={() => deleteProductHandler(record.id)}
           >
-            <Button type="danger" style={{ margin: "0 0 0 5px" }}>
-              Delete
+            <Button
+              type="danger"
+              style={{ margin: "1px 1px" }}
+            >
+              <MdDeleteForever size={20} />
             </Button>
           </Popconfirm>
         </>
       ),
     },
   ];
+
+  const urlPreviewFormatting = (url) => {
+    const urlArr = url.split("");
+
+    if (urlArr.length > 60) {
+      const tempArr = urlArr.slice(0, 40);
+      const endArr = urlArr.slice(urlArr.length - 17, urlArr.length);
+
+      for (let i = 0; i < 3; i++) {
+        tempArr.push(".");
+      }
+
+      tempArr.push(...endArr);
+
+      return tempArr.join("");
+    } else {
+      return urlArr.join("");
+    }
+  }
 
   const fetchProducts = async (page) => {
     setIsLoading(true);
@@ -199,67 +223,71 @@ const Dashboard = (props) => {
         <RightSidebar pageName="dashboard" appState={props.appState} />
         <Navbar pageName="Dashboard" appState={props.appState} />
 
-        <div className="dashboard-container">
-          <div className="product-table-card">
-            <div className="table-card-header">
-              <p>Product Table</p>
+        <div className="dashboard-root">
+          <div className="dashboard-container">
+            <div className="product-table-card">
+              <div className="table-card-header">
+                <p>Product Table</p>
 
-              <div className="right-button">
-                <Form>
-                  <Form.Item label="Category Filter">
-                    <Select
-                      style={{ width: "100px" }}
-                      defaultValue={categoryFilter}
-                      onChange={(value) => setCategoryFilter(value)}
-                    >
-                      <Select.Option value="all">All</Select.Option>
-                      <Select.Option value="mouse">Mouse</Select.Option>
-                      <Select.Option value="keyboard">Keyboard</Select.Option>
-                      <Select.Option value="headset">Headset</Select.Option>
-                      <Select.Option value="mousepad">Mousepad</Select.Option>
-                      <Select.Option value="chair">Chair</Select.Option>
-                    </Select>
-                  </Form.Item>
-                </Form>
+                <div className="right-button">
+                  <Form>
+                    <Form.Item label="Category Filter">
+                      <Select
+                        style={{ width: "100px" }}
+                        defaultValue={categoryFilter}
+                        onChange={(value) => setCategoryFilter(value)}
+                      >
+                        <Select.Option value="all">All</Select.Option>
+                        <Select.Option value="mouse">Mouse</Select.Option>
+                        <Select.Option value="keyboard">Keyboard</Select.Option>
+                        <Select.Option value="headset">Headset</Select.Option>
+                        <Select.Option value="mousepad">Mousepad</Select.Option>
+                        <Select.Option value="chair">Chair</Select.Option>
+                      </Select>
+                    </Form.Item>
+                  </Form>
 
-                <Button
-                  type="primary"
-                  onClick={() => {
-                    setModalVisible(true);
-                    setModalTitle("Add Product");
-                    setModalItem(null);
+                  <Button
+                    type="primary"
+                    onClick={() => {
+                      setModalVisible(true);
+                      setModalTitle("Add Product");
+                      setModalItem(null);
+                    }}
+                  >
+                    Add Product
+                  </Button>
+                </div>
+              </div>
+
+              <div className="table-card-body">
+                <Table
+                  style={{ width: "100%" }}
+                  loading={isLoading}
+                  rowKey={(record) => record.id}
+                  columns={columns}
+                  dataSource={productsData}
+                  pagination={{
+                    showSizeChanger: true,
+                    defaultPageSize: pageSize,
+                    defaultCurrent: 1,
+                    total: totalPages,
+                    onChange: (page) => {
+                      setCurrentPage(page);
+                      fetchProducts(page);
+                    },
+                    onShowSizeChange: (current, size) => {
+                      setPageSize(size);
+                    },
+                    showTotal: (total, range) =>
+                      `${range[0]}-${range[1]} of ${total} items`,
                   }}
-                >
-                  Add Product
-                </Button>
+                />
               </div>
             </div>
-
-            <div className="table-card-body">
-              <Table
-                style={{ width: "100%" }}
-                loading={isLoading}
-                rowKey={(record) => record.id}
-                columns={columns}
-                dataSource={productsData}
-                pagination={{
-                  showSizeChanger: true,
-                  defaultPageSize: pageSize,
-                  defaultCurrent: 1,
-                  total: totalPages,
-                  onChange: (page) => {
-                    setCurrentPage(page);
-                    fetchProducts(page);
-                  },
-                  onShowSizeChange: (current, size) => {
-                    setPageSize(size);
-                  },
-                  showTotal: (total, range) =>
-                    `${range[0]}-${range[1]} of ${total} items`,
-                }}
-              />
-            </div>
           </div>
+
+          <Footer />
         </div>
       </div>
 
