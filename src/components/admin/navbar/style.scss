@@ -15,7 +15,6 @@
   justify-content: center;
   z-index: 20;
 
-
   .navbar-container {
     width: 100%;
     height: 100%;
@@ -158,6 +157,7 @@
                 color: $secondary-color;
                 font-size: 0.8rem;
                 transition: all 0.2s ease-in-out;
+                cursor: pointer;
 
                 &:hover {
                   background-color: $quaternary-color;
@@ -217,10 +217,14 @@
   width: inherit;
   height: 71px;
   padding: 10px 0px;
-  background-color: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(2px);
-  box-shadow: 0px 0px 15px rgb(255 255 255 / 80%);
-  border-bottom: 1px solid $primary-color;
+  background: linear-gradient(
+    112.83deg,
+    hsla(0, 0%, 100%, 0.82),
+    hsla(0, 0%, 100%, 0.8) 110.84%
+  );
+  backdrop-filter: blur(5px);
+  box-shadow: 0 7px 23px rgb(0 0 0 / 5%);
+  border-bottom: 1.5px solid $tertiary-color;
   color: $secondary-color;
   position: fixed;
   display: flex;
@@ -306,7 +310,7 @@
           margin: 5px 15px 5px 0px;
           cursor: pointer;
           transition: all 0.2s ease-in-out;
-  
+
           &:hover {
             box-shadow: 0px 0px 10px rgb(0 0 0 / 15%);
             transition: all 0.2s ease-in-out;
@@ -316,7 +320,7 @@
             display: flex;
             opacity: 1;
           }
-  
+
           img {
             width: 40px;
             height: 40px;
@@ -370,6 +374,7 @@
                 color: $secondary-color;
                 font-size: 0.8rem;
                 transition: all 0.2s ease-in-out;
+                cursor: pointer;
 
                 &:hover {
                   background-color: $quaternary-color;
