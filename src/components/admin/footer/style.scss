@@ -1,0 +1,148 @@
+.admin-footer {
+  $primary-color: rgb(253, 253, 253);
+  $secondary-color: linear-gradient(
+    360deg,
+    rgb(230, 230, 230),
+    rgb(250, 250, 250)
+  );
+  $tertiary-color: #ef5350;
+
+  width: 100%;
+  height: auto;
+  background-color: $primary-color;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-top: 20px;
+  box-shadow: 0 0 10px rgb(0 0 0 / 10%);
+
+  .footer-container {
+    width: 100%;
+    height: auto;
+    display: flex;
+    margin: 30px 0;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .header {
+      width: auto;
+      height: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      img {
+        width: 60px;
+        margin: 0 20px 0 0;
+      }
+
+      h1 {
+        margin: 0;
+        font-weight: bold;
+      }
+    }
+
+    .body {
+      width: auto;
+      height: auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin-top: 10px;
+
+      p {
+        text-align: center;
+      }
+
+      .icon {
+        width: auto;
+        height: auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        a {
+          width: 40px;
+          height: 40px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          text-decoration: none;
+          border: none;
+          border-radius: 50%;
+          background-color: $primary-color;
+          margin: 0 10px;
+          color: black;
+          transition: all 0.3s ease-in-out;
+
+          &.instagram:hover {
+            color: $primary-color;
+            background: radial-gradient(
+              circle at 30% 107%,
+              #fdf497 0%,
+              #fdf497 5%,
+              #fd5949 45%,
+              #d6249f 60%,
+              #285aeb 90%
+            );
+            background: -webkit-radial-gradient(
+              circle at 30% 107%,
+              #fdf497 0%,
+              #fdf497 5%,
+              #fd5949 45%,
+              #d6249f 60%,
+              #285aeb 90%
+            );
+            box-shadow: 0 0 5px rgb(0 0 0 / 40%);
+            transition: background-color 0.2s ease-out;
+          }
+          
+          &.facebook:hover {
+            color: $primary-color;
+            background-color: rgb(66 103 178);
+            box-shadow: 0 0 5px rgb(0 0 0 / 40%);
+            transition: background-color 0.2s ease-out;
+          }
+
+          &.linkedin:hover {
+            color: $primary-color;
+            background-color: #0e76a8;
+            box-shadow: 0 0 5px rgb(0 0 0 / 40%);
+            transition: background-color 0.2s ease-out;
+          }
+
+          &.github:hover {
+            color: $primary-color;
+            background-color: #333;
+            box-shadow: 0 0 5px rgb(0 0 0 / 40%);
+            transition: background-color 0.2s ease-out;
+          }
+        }
+      }
+    }
+  }
+
+  .footer-copyright {
+    width: 100%;
+    height: 50px;
+    background: $secondary-color;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 5px rgb(0 0 0 / 10%);
+    
+    p {
+      margin: 0;
+      text-align: center;
+
+      a {
+        margin: 0;
+        text-decoration: none;
+        font-weight: bold;
+        color: $tertiary-color;
+      }
+    }
+  }
+}
