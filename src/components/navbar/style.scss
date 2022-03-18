@@ -1,0 +1,364 @@
+.navbar {
+  $primary-color: #ef5350;
+  $secondary-color: #fff;
+
+  width: 100%;
+  height: 70px;
+  padding: 10px 0px;
+  // background-color: $primary-color;
+  background-color: transparent;
+  color: $secondary-color;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+}
+
+.navbar-scroll {
+  $primary-color: #ef5350;
+  $secondary-color: #fff;
+
+  width: inherit;
+  height: 70px;
+  padding: 10px 0px;
+  background: linear-gradient(
+    112.83deg,
+    hsla(4, 86%, 60%, 0.82),
+    hsla(4, 86%, 60%, 0.8) 110.84%
+  );
+  backdrop-filter: blur(5px);
+  box-shadow: 0 7px 23px rgb(0 0 0 / 5%);
+  border-bottom: 1.5px solid $primary-color;
+  color: $secondary-color;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+}
+
+.navbar-container {
+  $primary-color: #ef5350;
+  $secondary-color: #fff;
+
+  width: 100%;
+  height: 100%;
+  padding: 0px 250px;
+  display: flex;
+  align-items: center;
+
+  .item-left {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-right: auto;
+
+    a {
+      width: auto;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      margin: 0;
+
+      img.logo {
+        height: 100%;
+        object-fit: cover;
+        padding: 10px 0;
+        margin-left: 5px;
+      }
+
+      h1 {
+        color: $secondary-color;
+        font-size: 1.5em;
+        font-weight: bold;
+        margin: 0;
+        margin-left: 10px;
+      }
+    }
+  }
+
+  .item-middle {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .button-container {
+      height: 100%;
+      width: auto;
+      position: absolute;
+
+      button.item {
+        height: 100%;
+        margin: 1px;
+        width: 70px;
+        font-size: 1.1rem;
+        border: none;
+        outline: none;
+        white-space: nowrap;
+        background-color: transparent;
+        cursor: pointer;
+
+        &:hover {
+          border-bottom: 2.5px solid $secondary-color;
+          font-weight: bold;
+        }
+      }
+
+      button.item-active {
+        height: 100%;
+        margin: 1px;
+        width: 70px;
+        font-size: 1.1rem;
+        border: none;
+        outline: none;
+        white-space: nowrap;
+        background-color: transparent;
+        border-bottom: 2.5px solid $secondary-color;
+        font-weight: bold;
+      }
+    }
+
+    @media screen and (max-width: 960px) {
+      display: none;
+    }
+  }
+
+  .item-right {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-left: auto;
+
+    button.sign-in {
+      width: auto;
+      height: 70%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      margin: 0;
+      padding: 5px 15px;
+      color: $secondary-color;
+      background-color: $primary-color;
+      border: none;
+      outline: none;
+      white-space: nowrap;
+      border-radius: 5px;
+      font-size: 1rem;
+      box-shadow: 0 0 8px rgb(0 0 0 / 15%);
+      cursor: pointer;
+      transition: all 0.2s ease-in-out;
+
+      &:hover {
+        box-shadow: 0 2px 8px rgb(0 0 0 / 25%);
+        transition: all 0.2s ease-in-out;
+      }
+    }
+
+    button.sign-in-scroll {
+      width: auto;
+      height: 70%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      margin: 0;
+      padding: 5px 15px;
+      color: $primary-color;
+      background-color: $secondary-color;
+      border: none;
+      outline: none;
+      white-space: nowrap;
+      border-radius: 5px;
+      font-size: 1rem;
+      box-shadow: 0 0 8px rgb(0 0 0 / 15%);
+      cursor: pointer;
+      transition: all 0.2s ease-in-out;
+
+      &:hover {
+        box-shadow: 0 2px 8px rgb(0 0 0 / 25%);
+        transition: all 0.2s ease-in-out;
+      }
+    }
+
+    button.menu {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: transparent;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 5px 5px 5px 0px;
+      cursor: pointer;
+      transition: all 0.2s ease-in-out;
+      display: none;
+
+      &:hover {
+        box-shadow: 0px 0px 10px rgb(0 0 0 / 15%);
+        transition: all 0.2s ease-in-out;
+      }
+    }
+
+    .navbar-profile-container {
+      width: auto;
+      height: 100%;
+      display: flex;
+      align-items: center;
+
+      p {
+        font-size: 1rem;
+        font-weight: normal;
+        margin: 0px;
+        padding: 10px 20px;
+        color: $secondary-color;
+      }
+
+      .btn-profile-container {
+        width: 55px;
+        height: 50px;
+
+        button.profile-img {
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          border: none;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin: 5px 15px 5px 0px;
+          cursor: pointer;
+          transition: all 0.2s ease-in-out;
+
+          &:hover {
+            box-shadow: 0px 0px 10px rgb(0 0 0 / 15%);
+            transition: all 0.2s ease-in-out;
+          }
+
+          &:focus ~ .profile-dropdown {
+            display: flex;
+            opacity: 1;
+          }
+
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 1px solid $secondary-color;
+          }
+        }
+
+        .profile-dropdown {
+          background-color: $secondary-color;
+          right: 100px;
+          top: 15px;
+          width: 145px;
+          height: auto;
+          position: relative;
+          border-radius: 4px;
+          box-shadow: 0 0 10px rgb(0 0 0 / 10%);
+
+          display: none;
+          opacity: 0;
+          animation-name: profile-dropdown;
+          animation-duration: 200ms;
+          animation-timing-function: ease-in-out;
+          animation-fill-mode: forwards;
+
+          &:hover {
+            display: flex;
+            opacity: 1;
+          }
+
+          ul {
+            width: 100%;
+            height: auto;
+            list-style-type: none;
+            padding: 13px 0px;
+            margin: 0;
+
+            li {
+              width: 100%;
+              height: 40px;
+              padding: 0 5px;
+
+              button {
+                width: 100%;
+                height: 100%;
+                border: none;
+                background-color: $secondary-color;
+                padding: 10px 20px;
+                border-radius: 3px;
+                display: flex;
+                color: $primary-color;
+                font-size: 0.8rem;
+                transition: all 0.2s ease-in-out;
+                cursor: pointer;
+
+                &:hover {
+                  background-color: $primary-color;
+                  color: $secondary-color;
+                  font-weight: bold;
+                  transition: all 0.2s ease-in-out;
+                  box-shadow: 0 0 5px rgb(0 0 0 / 30%);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    @media screen and (max-width: 960px) {
+      margin-left: 0;
+      width: auto;
+
+      button.menu {
+        display: flex;
+      }
+
+      .navbar-profile-container {
+        display: none;
+      }
+
+      button.sign-in {
+        display: none;
+      }
+
+      button.sign-in-scroll {
+        display: none;
+      }
+    }
+  }
+
+  @media screen and (max-width: 1560px) {
+    padding: 0px 200px;
+  }
+
+  @media screen and (max-width: 1400px) {
+    padding: 0px 150px;
+  }
+
+  @media screen and (max-width: 1200px) {
+    padding: 0px 100px;
+  }
+
+  @media screen and (max-width: 1000px) {
+    padding: 0px 50px;
+  }
+
+  @media screen and (max-width: 960px) {
+    padding: 0px 20px;
+  }
+}
