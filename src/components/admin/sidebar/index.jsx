@@ -18,7 +18,7 @@ const Sidebar = (props) => {
           <a href="/" className="title">
             <img
               className="title-img"
-              src={require("../../../assets/logo/logo-transparent.png")}
+              src={require("../../../assets/logo/logo-white-small.png")}
               alt=""
             />
 

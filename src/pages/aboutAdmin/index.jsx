@@ -1,12 +1,47 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Footer from "../../components/admin/footer";
 import Navbar from "../../components/admin/navbar";
 import RightSidebar from "../../components/admin/rightSidebar";
 import Sidebar from "../../components/admin/sidebar";
+import axios from "axios";
 
 import "./style.scss";
 
 const AboutAdmin = (props) => {
+  const [userAuthData, setUserAuthData] = useState({});
+
+  const getUserData = async () => {
+    const token = localStorage.getItem("access_token");
+    const config = {
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    };
+    try {
+      await axios
+        .get(props.apiUrl.urlGetDataUserAuth, config)
+        .then((res) => {
+          setUserAuthData(res.data);
+        })
+        .catch((err) => {
+          if (
+            err.response.status === 401 &&
+            err.response.data.message === "Token expired."
+          ) {
+            localStorage.removeItem("access_token");
+            window.location.reload();
+          }
+          console.error(err);
+        });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    getUserData();
+  }, []);
+
   return (
     <>
       <div
@@ -14,8 +49,8 @@ const AboutAdmin = (props) => {
           props.appState.isExpand ? "about-admin-expand" : "about-admin"
         }
       >
-        <RightSidebar pageName="aboutAdmin" appState={props.appState} />
-        <Navbar pageName="About" appState={props.appState} />
+        <RightSidebar pageName="aboutAdmin" appState={props.appState} userAuthData={userAuthData} />
+        <Navbar pageName="About" appState={props.appState} userAuthData={userAuthData} />
 
         <div className="about-admin-root">
           <div className="about-admin-container">

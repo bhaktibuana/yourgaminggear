@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { MdList, MdOutlineMoreVert, MdOutlineMenu } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
+import { Spin } from "antd";
 
 import "./style.scss";
 
@@ -23,6 +24,11 @@ const Navbar = (props) => {
     } else {
       return setNavbarClass("admin-navbar-scroll");
     }
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("access_token");
+    window.location.reload();
   };
 
   useEffect(() => {
@@ -54,24 +60,27 @@ const Navbar = (props) => {
           </div>
 
           <div className="item-right">
-            <p>Bhakti Buana</p>
+            <p>{props.userAuthData.name}</p>
 
             <div className="profile-container">
               <button className="profile-img">
-                <img
-                  src={require("../../../assets/img/profile.png")}
-                  alt="profile"
-                />
+                {props.userAuthData.image_url ? (
+                  <img src={props.userAuthData.image_url} alt="profile" />
+                ) : (
+                  <Spin />
+                )}
               </button>
 
               <div className="profile-dropdown">
                 <ul>
                   <li>
-                    <button onClick={() => dropdownItemHandler("/account")}>Account Setting</button>
+                    <button onClick={() => dropdownItemHandler("/account")}>
+                      Account Setting
+                    </button>
                   </li>
 
                   <li>
-                    <button>Logout</button>
+                    <button onClick={() => handleLogout()}>Logout</button>
                   </li>
                 </ul>
               </div>

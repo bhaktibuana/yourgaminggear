@@ -42,6 +42,7 @@
 
       h1 {
         margin: 0px 10px;
+        color: $secondary-color;
         font-size: clamp(0.8rem, 1vw + 1rem, 1.2rem);
         font-weight: bold;
         display: none;
@@ -197,6 +198,7 @@
       }
 
       h1 {
+        color: $secondary-color;
         margin: 0px 10px;
         font-size: clamp(0.8rem, 1vw + 1rem, 1.2rem);
         font-weight: bold;

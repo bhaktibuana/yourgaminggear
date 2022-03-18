@@ -1,0 +1,20 @@
+.auth-footer {
+  $primary-color: #fff;
+  $secondary-color: #ef5350;
+
+  width: 100%;
+  height: auto;
+  padding: 10px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  p {
+    color: $primary-color;
+    text-align: center;
+
+    a {
+      color: $secondary-color;
+    }
+  }
+}

@@ -8,6 +8,7 @@ import {
   MdInfo,
 } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
+import { Spin } from "antd";
 
 import "./style.scss";
 
@@ -66,7 +67,7 @@ const RightSidebar = (props) => {
             <a href="/" className="title">
               <img
                 className="title-img"
-                src={require("../../../assets/logo/logo-transparent.png")}
+                src={require("../../../assets/logo/logo-white-small.png")}
                 alt=""
               />
 
@@ -78,13 +79,14 @@ const RightSidebar = (props) => {
 
           <div className="profile-container">
             <button className="profile" onClick={profileHandler}>
-              <img
-                src={require("../../../assets/img/profile.png")}
-                alt="profile"
-              />
+              {props.userAuthData.image_url ? (
+                <img src={props.userAuthData.image_url} alt="profile" />
+              ) : (
+                <Spin />
+              )}
 
               <div className="profile-text">
-                <p>Bhakti Buana</p>
+                <p>{props.userAuthData.name}</p>
 
                 <div className="arrow-icon" style={iconProfileStyle}>
                   <MdOutlineArrowDropDown size={24} />

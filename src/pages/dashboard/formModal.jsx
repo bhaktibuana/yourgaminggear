@@ -39,35 +39,62 @@ const FormModal = (props) => {
   const addProduct = async () => {
     setConfirmLoading(true);
 
+    const token = localStorage.getItem("access_token");
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
     try {
       if (formik.values.image_name === "") {
+        const bodyParams = {
+          name: formik.values.name,
+          category: formik.values.category,
+          quantity: formik.values.quantity,
+          price: formik.values.price,
+        };
+
         await axios
-          .post(props.apiUrl.urlAddProductDefault, {
-            name: formik.values.name,
-            category: formik.values.category,
-            quantity: formik.values.quantity,
-            price: formik.values.price,
-          })
+          .post(props.apiUrl.urlAddProductDefault, bodyParams, config)
           .then((res) => {
             handleClose();
             props.fetchProducts(props.currentPage);
           })
           .catch((err) => {
+            if (
+              err.response.status === 401 &&
+              err.response.data.message === "Token expired."
+            ) {
+              localStorage.removeItem("access_token");
+              window.location.reload();
+            }
+
             console.error(err);
           });
       } else {
+        const bodyParams = {
+          name: formik.values.name,
+          category: formik.values.category,
+          quantity: formik.values.quantity,
+          price: formik.values.price,
+          image_name: formik.values.image_name,
+        };
+
         await axios
-          .post(props.apiUrl.urlAddProduct, {
-            name: formik.values.name,
-            category: formik.values.category,
-            quantity: formik.values.quantity,
-            price: formik.values.price,
-            image_name: formik.values.image_name,
-          })
+          .post(props.apiUrl.urlAddProduct, bodyParams, config)
           .then((res) => {
             uploadImage();
           })
           .catch((err) => {
+            if (
+              err.response.status === 401 &&
+              err.response.data.message === "Token expired."
+            ) {
+              localStorage.removeItem("access_token");
+              window.location.reload();
+            }
+
             console.error(err);
           });
       }
@@ -79,35 +106,66 @@ const FormModal = (props) => {
   const updateProduct = async () => {
     setConfirmLoading(true);
 
+    const token = localStorage.getItem("access_token");
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
     try {
       if (formik.values.image_name === "") {
+        const bodyParams = {
+          name: formik.values.name,
+          category: formik.values.category,
+          quantity: formik.values.quantity,
+          price: formik.values.price,
+        };
+
         await axios
-          .put(props.apiUrl.urlUpdateProductDefault + props.modalItem.id, {
-            name: formik.values.name,
-            category: formik.values.category,
-            quantity: formik.values.quantity,
-            price: formik.values.price,
-          })
+          .put(
+            props.apiUrl.urlUpdateProductDefault + props.modalItem.id,
+            bodyParams,
+            config
+          )
           .then((res) => {
             handleClose();
             props.fetchProducts(props.currentPage);
           })
           .catch((err) => {
+            if (
+              err.response.status === 401 &&
+              err.response.data.message === "Token expired."
+            ) {
+              localStorage.removeItem("access_token");
+              window.location.reload();
+            }
+
             console.error(err);
           });
       } else {
+        const bodyParams = {
+          name: formik.values.name,
+          category: formik.values.category,
+          quantity: formik.values.quantity,
+          price: formik.values.price,
+          image_name: formik.values.image_name,
+        };
+
         await axios
-          .put(props.apiUrl.urlUpdateProduct + props.modalItem.id, {
-            name: formik.values.name,
-            category: formik.values.category,
-            quantity: formik.values.quantity,
-            price: formik.values.price,
-            image_name: formik.values.image_name,
-          })
+          .put(props.apiUrl.urlUpdateProduct + props.modalItem.id, bodyParams, config)
           .then((res) => {
             uploadImage();
           })
           .catch((err) => {
+            if (
+              err.response.status === 401 &&
+              err.response.data.message === "Token expired."
+            ) {
+              localStorage.removeItem("access_token");
+              window.location.reload();
+            }
+
             console.error(err);
           });
       }
@@ -143,11 +201,7 @@ const FormModal = (props) => {
     setConfirmLoading(false);
     props.setVisible(false);
     document.getElementById("choose-img").value = "";
-    formik.setFieldValue("name", "");
-    formik.setFieldValue("category", "");
-    formik.setFieldValue("quantity", 0);
-    formik.setFieldValue("price", 0);
-    formik.setFieldValue("image_name", "");
+    formik.resetForm();
     setTempImage(null);
     props.setModalItem(null);
   };
