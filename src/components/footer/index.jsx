@@ -10,7 +10,7 @@ const Footer = () => {
         <div className="footer-container">
           <div className="header">
             <img
-              src={require("../../../assets/logo/logo-transparent.png")}
+              src={require("../../assets/logo/logo-transparent.png")}
               alt=""
             />
             <h1>Your Gaming Gear</h1>

@@ -12,6 +12,8 @@ import Catalog from "./pages/catalog";
 import Dashboard from "./pages/dashboard";
 import Login from "./pages/auth/login";
 import Register from "./pages/auth/register";
+import About from "./pages/about";
+import CatalogId from "./pages/catalogId";
 import { apiUrl } from "./api/apiUrl";
 
 import "./App.scss";
@@ -53,7 +55,9 @@ function App() {
       <BrowserRouter>
         <Routes>
           {/* public route */}
-          <Route path="/" element={<Catalog />} />
+          <Route path="/" element={<Catalog appState={appState} apiUrl={apiUrl} />} />
+          <Route path="/about" element={<About appState={appState} apiUrl={apiUrl} />} />
+          <Route path="/product/:category-:id-:name" element={<CatalogId appState={appState} apiUrl={apiUrl} />} />
 
           {/* auth route */}
           <Route element={<RequireNoAuth />}>
