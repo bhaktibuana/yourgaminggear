@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Navbar from "../../components/admin/navbar";
 import Sidebar from "../../components/admin/sidebar";
 import RightSidebar from "../../components/admin/rightSidebar";
-import Footer from "../../components/admin/footer";
+import Footer from "../../components/footer";
 import ProfileModal from "./profileModal";
 import PasswordModal from "./passwordModal";
 import DeleteModal from "./deleteModal";

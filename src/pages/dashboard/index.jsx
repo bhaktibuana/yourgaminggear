@@ -2,13 +2,13 @@ import React, { useState, useEffect } from "react";
 import Navbar from "../../components/admin/navbar";
 import RightSidebar from "../../components/admin/rightSidebar";
 import Sidebar from "../../components/admin/sidebar";
-import Footer from "../../components/admin/footer";
+import Footer from "../../components/footer";
+import FormModal from "./formModal";
 import { Table, Button, Form, Select, Popconfirm } from "antd";
 import { MdEditNote, MdDeleteForever } from "react-icons/md";
 import axios from "axios";
 
 import "./style.scss";
-import FormModal from "./formModal";
 
 const currencyFormater = require("currency-formatter");
 
