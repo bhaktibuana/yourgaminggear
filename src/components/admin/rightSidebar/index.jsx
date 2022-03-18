@@ -51,6 +51,11 @@ const RightSidebar = (props) => {
     navigate(path);
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem("access_token");
+    window.location.reload();
+  };
+
   return (
     <>
       <div className="admin-right-sidebar" style={rightSidebarStyle}>
@@ -94,7 +99,11 @@ const RightSidebar = (props) => {
               </div>
             </button>
 
-            <button className="logout" style={btnLogoutStyle}>
+            <button
+              className="logout"
+              style={btnLogoutStyle}
+              onClick={handleLogout}
+            >
               <div className="icon-logout">
                 <MdLogout size={24} />
               </div>
