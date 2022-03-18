@@ -4,6 +4,7 @@ const apiBaseUrl = "http://localhost:3001";
 export const apiUrl = {
   urlGetProducts: `${apiBaseUrl}/product`,
   urlGetProductsByCategory: `${apiBaseUrl}/product/`,
+  urlGetProductById: `${apiBaseUrl}/product-id/`,
   urlAddProductDefault: `${apiBaseUrl}/product/default`,
   urlAddProduct: `${apiBaseUrl}/product`,
   urlUpdateProductDefault: `${apiBaseUrl}/product/default/`,
