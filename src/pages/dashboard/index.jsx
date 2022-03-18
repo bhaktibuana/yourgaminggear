@@ -13,6 +13,7 @@ import FormModal from "./formModal";
 const currencyFormater = require("currency-formatter");
 
 const Dashboard = (props) => {
+  const [userAuthData, setUserAuthData] = useState({});
   const [productsData, setProductsData] = useState([]);
   const [totalPages, setTotalPages] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
@@ -37,7 +38,7 @@ const Dashboard = (props) => {
       dataIndex: "key",
       key: "key",
       align: "center",
-      width: "3%",
+      width: "2%",
       sorter: (a, b) => a.key - b.key,
     },
     {
@@ -54,7 +55,7 @@ const Dashboard = (props) => {
       render: (text) => firstLetterUpperCase(text),
     },
     {
-      title: "Quantity",
+      title: "Qty",
       dataIndex: "quantity",
       key: "quantity",
       sorter: (a, b) => a.quantity - b.quantity,
@@ -99,10 +100,7 @@ const Dashboard = (props) => {
             title="Sure to delete?"
             onConfirm={() => deleteProductHandler(record.id)}
           >
-            <Button
-              type="danger"
-              style={{ margin: "1px 1px" }}
-            >
+            <Button type="danger" style={{ margin: "1px 1px" }}>
               <MdDeleteForever size={20} />
             </Button>
           </Popconfirm>
@@ -128,7 +126,7 @@ const Dashboard = (props) => {
     } else {
       return urlArr.join("");
     }
-  }
+  };
 
   const fetchProducts = async (page) => {
     setIsLoading(true);
@@ -193,19 +191,66 @@ const Dashboard = (props) => {
   };
 
   const deleteProductHandler = async (id) => {
+    const token = localStorage.getItem("access_token");
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
     try {
       await axios
-        .put(props.apiUrl.urlDeleteProductById + id)
+        .put(props.apiUrl.urlDeleteProductById + id, {}, config)
         .then((res) => {
           fetchProducts(currentPage);
         })
         .catch((err) => {
+          if (
+            err.response.status === 401 &&
+            err.response.data.message === "Token expired."
+          ) {
+            localStorage.removeItem("access_token");
+            window.location.reload();
+          }
+
           console.error(err);
         });
     } catch (error) {
       console.error(error);
     }
   };
+
+  const getUserData = async () => {
+    const token = localStorage.getItem("access_token");
+    const config = {
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    };
+    try {
+      await axios
+        .get(props.apiUrl.urlGetDataUserAuth, config)
+        .then((res) => {
+          setUserAuthData(res.data);
+        })
+        .catch((err) => {
+          if (
+            err.response.status === 401 &&
+            err.response.data.message === "Token expired."
+          ) {
+            localStorage.removeItem("access_token");
+            window.location.reload();
+          }
+          console.error(err);
+        });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    getUserData();
+  }, []);
 
   useEffect(() => {
     fetchProducts(1);
@@ -220,8 +265,16 @@ const Dashboard = (props) => {
       <div
         className={props.appState.isExpand ? "dashboard-expand" : "dashboard"}
       >
-        <RightSidebar pageName="dashboard" appState={props.appState} />
-        <Navbar pageName="Dashboard" appState={props.appState} />
+        <RightSidebar
+          pageName="dashboard"
+          appState={props.appState}
+          userAuthData={userAuthData}
+        />
+        <Navbar
+          pageName="Dashboard"
+          appState={props.appState}
+          userAuthData={userAuthData}
+        />
 
         <div className="dashboard-root">
           <div className="dashboard-container">
