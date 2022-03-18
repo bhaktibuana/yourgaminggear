@@ -1,0 +1,204 @@
+.catalog {
+  $primary-color: #eee;
+  $secondary-color: #fff;
+  $tertiary-color: #555;
+
+  width: 100%;
+  height: auto;
+  min-height: 100vh;
+  position: absolute;
+  background-color: $primary-color;
+
+  .catalog-root {
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .catalog-container {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .catalog-header {
+        background: rgb(40, 40, 40);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0 30px;
+        width: 100%;
+        height: 380px;
+        position: relative;
+        z-index: 1;
+
+        &::before {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: linear-gradient(
+              180deg,
+              rgba(0, 0, 0, 0.2) 0%,
+              rgba(0, 0, 0, 0.6) 100%
+            ),
+            linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, transparent 100%);
+          z-index: 2;
+        }
+
+        .background-container {
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          overflow: hidden;
+
+          img {
+            width: 100%;
+            height: 100%;
+            -o-object-fit: cover;
+            object-fit: cover;
+            background: #232a34;
+          }
+        }
+
+        .title-container {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          width: 100%;
+          height: 100%;
+          z-index: 3;
+          text-align: center;
+
+          h1 {
+            color: $secondary-color;
+            font-size: clamp(1.2rem, 1vw + 1rem, 2rem);
+          }
+
+          p {
+            color: $secondary-color;
+            font-size: clamp(0.6rem, 1vw + 0.4rem, 1rem);
+          }
+        }
+      }
+
+      .catalog-body {
+        width: 100%;
+        height: auto;
+        margin-inline: auto;
+        padding-inline: 30px;
+        margin-bottom: 30px;
+        background-color: $primary-color;
+        z-index: 3;
+
+        .filter-container {
+          background: $secondary-color;
+          border-radius: 4px;
+          box-shadow: 1px 1px 10px 1px rgb(39 5 5 / 30%);
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 10px 6px;
+          position: relative;
+          top: -12px;
+          width: 100%;
+
+          p.title {
+            color: $tertiary-color;
+            font-weight: bold;
+            margin: 0;
+          }
+
+          .filter {
+            width: auto;
+            display: flex;
+
+            .ant-row.ant-form-item {
+              margin: 0;
+            }
+
+            @media screen and (max-width: 575px) {
+              .ant-form .ant-form-item .ant-form-item-label,
+              .ant-form .ant-form-item .ant-form-item-control {
+                flex: auto;
+              }
+
+              .ant-form-item .ant-form-item-label {
+                padding: 0;
+                white-space: nowrap;
+                text-align: right;
+              }
+            }
+          }
+
+          @media screen and (min-width: 768px) {
+            padding: 10px 14px;
+          }
+        }
+
+        .thumbnail-card-container {
+          display: grid;
+          gap: 24px;
+          grid-template-columns: repeat(1, minmax(0px, 1fr));
+          margin: 26px 0;
+
+          @media screen and (min-width: 480px) {
+            grid-template-columns: repeat(2, minmax(0px, 1fr));
+          }
+
+          @media screen and (min-width: 768px) {
+            grid-template-columns: repeat(3, minmax(0px, 1fr));
+          }
+
+          @media screen and (min-width: 1100px) {
+            grid-template-columns: repeat(4, minmax(0px, 1fr));
+          }
+
+          @media screen and (min-width: 1440px) {
+            grid-template-columns: repeat(5, minmax(0px, 1fr));
+          }
+        }
+
+        .spinner-container {
+          width: 100%;
+          height: 400px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+
+        .pagination-container {
+          width: 100%;
+          height: auto;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background-color: $secondary-color;
+          padding: 10px;
+          border-radius: 0.25rem;
+          box-shadow: rgb(0 0 0 / 10%) 0px 0px 15px;
+        }
+
+        @media screen and (min-width: 1100px) {
+          width: 1080px;
+          padding-inline: 0;
+        }
+
+        @media screen and (min-width: 1440px) {
+          width: 1240px;
+          padding-inline: 0;
+        }
+      }
+    }
+  }
+}
