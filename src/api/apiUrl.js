@@ -1,5 +1,5 @@
-const apiBaseUrl = "http://localhost:3001";
-// const apiBaseUrl = "https://buanastore-server.herokuapp.com";
+// const apiBaseUrl = "http://localhost:3001";
+const apiBaseUrl = "https://yourgaminggear-server.herokuapp.com";
 
 export const apiUrl = {
   urlGetProducts: `${apiBaseUrl}/product`,
