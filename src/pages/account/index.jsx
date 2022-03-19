@@ -13,6 +13,7 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import "yup-phone";
 import { updateName, updateEmail, updatePhone, updateAddress } from "./helper";
+import moment from "moment";
 
 import "./style.scss";
 
@@ -115,6 +116,10 @@ const Account = (props) => {
     },
   });
 
+  const joinDateParse = (date) => {
+    return moment(date).fromNow();
+  };
+
   const getUserData = async () => {
     const token = localStorage.getItem("access_token");
     const config = {
@@ -183,6 +188,7 @@ const Account = (props) => {
               <div className="profile-content">
                 <h1>{userAuthData.name}</h1>
                 <p>Your Gaming Gear Admin</p>
+                <p>Joined {joinDateParse(userAuthData.join_date)}</p>
               </div>
             </div>
 
@@ -465,10 +471,7 @@ const Account = (props) => {
         setUserAuthData={setUserAuthData}
       />
 
-      <DeleteModal
-        visible={showDeleteModal}
-        setVisible={setShowDeleteModal}
-      />
+      <DeleteModal visible={showDeleteModal} setVisible={setShowDeleteModal} />
     </>
   );
 };
