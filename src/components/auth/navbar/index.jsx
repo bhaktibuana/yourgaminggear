@@ -10,7 +10,7 @@ const Navbar = (props) => {
   return (
     <>
       <div className="auth-navbar">
-        <div className="navbar-container">
+        <div className="auth-navbar-container">
           <div className="navbar-logo">
             <a href="/">
               <img
