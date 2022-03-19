@@ -3,10 +3,10 @@ import { useParams } from "react-router-dom";
 import Navbar from "../../components/navbar";
 import Sidebar from "../../components/sidebar";
 import Footer from "../../components/footer";
+import { Button, Spin } from "antd";
 import axios from "axios";
 
 import "./style.scss";
-import { Button } from "antd";
 
 const currencyFormater = require("currency-formatter");
 
@@ -15,14 +15,16 @@ const CatalogId = (props) => {
   const [productData, setProductData] = useState({});
   const [isLoading, setIsLoading] = useState(false);
 
-  const { id, category, name } = useParams();
+  const { id, category } = useParams();
 
   const idrFormat = (value) => {
     return currencyFormater.format(value, { code: "IDR" });
   };
 
   const firstLetterUpperCase = (value) => {
-    return value.charAt(0).toUpperCase() + value.slice(1);
+    if (value) {
+      return value.charAt(0).toUpperCase() + value.slice(1);
+    }
   };
 
   const fetchProduct = async (id) => {
@@ -123,40 +125,45 @@ const CatalogId = (props) => {
                 </div>
               </div>
 
-              <div className="product-card-container">
-                <a
-                  href={productData.image_url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="image-container"
-                >
-                  <img src={productData.image_url} alt="product" />
-                </a>
+              {isLoading ? (
+                <div className="spinner-container">
+                  <Spin tip="Loading product..." size="large" />
+                </div>
+              ) : (
+                <div className="product-card-container">
+                  <a
+                    href={productData.image_url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="image-container"
+                  >
+                    <img src={productData.image_url} alt="product" />
+                  </a>
 
-                <div className="product-card-body">
-                  <div className="content-top">
-                    <h1>{productData.name}</h1>
+                  <div className="product-card-body">
+                    <div className="content-top">
+                      <h1>{productData.name}</h1>
 
-                    <h3>
-                      {/* Category: {firstLetterUpperCase(productData.category)} */}
-                      Category: {productData.category}
-                    </h3>
+                      <h3>
+                        Category: {firstLetterUpperCase(productData.category)}
+                      </h3>
 
-                    <h3>Stock: {productData.quantity}</h3>
-                    <h3>Price: {idrFormat(productData.price)}</h3>
-                  </div>
+                      <h3>Stock: {productData.quantity}</h3>
+                      <h3>Price: {idrFormat(productData.price)}</h3>
+                    </div>
 
-                  <div className="content-bottom">
-                    <Button style={{ margin: "10px" }} type="danger">
-                      Add to wishlist
-                    </Button>
+                    <div className="content-bottom">
+                      <Button style={{ margin: "10px" }} type="danger">
+                        Add to wishlist
+                      </Button>
 
-                    <Button style={{ margin: "10px" }} type="primary">
-                      Add to cart
-                    </Button>
+                      <Button style={{ margin: "10px" }} type="primary">
+                        Add to cart
+                      </Button>
+                    </div>
                   </div>
                 </div>
-              </div>
+              )}
             </div>
           </div>
 
