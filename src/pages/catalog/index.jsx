@@ -157,7 +157,7 @@ const Catalog = (props) => {
             <div className="catalog-header">
               <div className="background-container">
                 <img
-                  src={require("../../assets/img/profile-bg.png")}
+                  src={require("../../assets/img/about-bg.png")}
                   alt="catalog-bg"
                 />
               </div>
